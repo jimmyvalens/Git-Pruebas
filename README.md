@@ -54,3 +54,13 @@ Para subir el repositorio local a Github:
     git add .
     git commit -m "mensaje"
     git push
+
+- Clonar repositorio de Github
+
+    Vamos a Github copiamos la url del repositorio a clonar
+    Volvemos a nuestro sitema de archivos y nos ubicamos en la carpeta donde queremos clonar el repositorio
+    git clone [url_del_repositorio_de_Github_a_clonar] 
+
+- Actualizar repositorio local con los cambios que se hayan hecho en el repositorio de Github
+
+    git pull
