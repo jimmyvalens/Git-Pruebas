@@ -64,3 +64,5 @@ Para subir el repositorio local a Github:
 - Actualizar repositorio local con los cambios que se hayan hecho en el repositorio de Github
 
     git pull
+
+- Esta línea es solo para probar git pull
