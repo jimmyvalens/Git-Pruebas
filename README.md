@@ -92,3 +92,4 @@ Cuando trabajamos en equipo y nos han encomendado desarrollar alguna parte del c
 - En el repositorio que hemos clonado creamos una nueva rama para trabajar.
 - Realizamos nuestro trabajo en esa rama como lo hemos venido haciendo hasta ahora
 - Subimos los cambios al repositorio de Github en su propia rama (si no existe la creamos)
+- Dentro de la interfaz de Github haremos un "pull-request" para que nuestro equipo de trabajo revise nuestro código y lo mergee a la rama correspondiente, al crear el pull-request se mostrará todos los commits que hemos realizado en los ficheros y el equipo de trabajo lo mergeará si es necesario.
