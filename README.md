@@ -93,3 +93,12 @@ Cuando trabajamos en equipo y nos han encomendado desarrollar alguna parte del c
 - Realizamos nuestro trabajo en esa rama como lo hemos venido haciendo hasta ahora
 - Subimos los cambios al repositorio de Github en su propia rama (si no existe la creamos)
 - Dentro de la interfaz de Github haremos un "pull-request" para que nuestro equipo de trabajo revise nuestro código y lo mergee a la rama correspondiente, al crear el pull-request se mostrará todos los commits que hemos realizado en los ficheros y el equipo de trabajo lo mergeará si es necesario.
+
+- CONFLICTOS
+
+Los conflictos se pueden dar por varias razones entre ellas cuando los desarrolladores de un equipo han hecho o pretenden subir cambios al repositorio de Git sobre un mismo código sin tener actualizado el repositorio local. Github no sabe con cual versión quedarse y esto se debe solucionar revisando manualmente cada conflicto y eligiendo cual es la versión que vamos a mentener. Github mostrará un aviso de que existen conflictos cuando hagamos un pull-request o merge.
+
+Los conflictos se pueden resolver desde la interfaz de Github o desde nuestro editor sobre nuestro repositorio local:
+
+- Nos posicionamos en la rama donde estamos trabajando
+- git pull origin main (esto traerá de Github todos los cambios hechos en la rama main, incluso los conflictos)
