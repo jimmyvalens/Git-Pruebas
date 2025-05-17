@@ -61,8 +61,26 @@ Para subir el repositorio local a Github:
     Volvemos a nuestro sitema de archivos y nos ubicamos en la carpeta donde queremos clonar el repositorio
     git clone [url_del_repositorio_de_Github_a_clonar] 
 
-- Actualizar repositorio local con los cambios que se hayan hecho en el repositorio de Github
+- Actualizar repositorio local con los cambios que se hayan hecho en el repositorio de Github, este paso será siempre el primero antes de trabajar en un repositorio de un equipo de trabajo
 
     git pull
 
-- Esta línea es solo para probar git pull
+- Branches (ramas)
+  Una rama la podemos ver como una copia del directorio principal, en la cual podemos realizar cambios sin modificar el contenido del directorio principal (rama main), esto se hace para añadir nuevas funcionalidades al código, teniendo así una nueva versión sin sobreescribir la original. A su vez cada rama puede dar lugar a la creación de nuevas ramas
+
+    - Crear y moverse a una nueva rama
+
+        git checkout -b(de branch) [nombre_de_la_nueva_rama] ó git switch -c(de change) [nombre_de_la_nueva_rama] (más moderno)
+
+    - Ver todas las ramas y la rama en la que nos encontramos
+
+        git branch
+
+    - Moverse entre las ramas
+
+        git checkout [nombre_de_la_rama] ó git switch [nombre_de_la_rama]
+
+    - Volcar, fusionar o mergear el contenido de una rama con otra
+
+        - Nos ubicamos en la rama a donde queremos traer los cambios
+        - git merge [nombre_de_la_rama] (de donde traeremos los cambios)
