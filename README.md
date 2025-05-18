@@ -102,3 +102,28 @@ Los conflictos se pueden resolver desde la interfaz de Github o desde nuestro ed
 
 - Nos posicionamos en la rama donde estamos trabajando
 - git pull origin main (esto traerá de Github todos los cambios hechos en la rama main, incluso los conflictos)
+
+GIT PULL VS. GIT FETCH
+
+- git pull trae los cambios del repositorio remoto y automáticamente actualiza nuestro repositorio local.
+- git fetch descarga los cambios del repositorio remoto sin sobreescribir el repositorio local, esto permite que podamos revisar los cambios que otro desarrollador haya hecho en el repositorio y decidir si queremos aplicarlos al nuestro con merge
+
+FORK
+
+Hacer un fork es hacer una copia exacta de un repositorio de Github a nuestra cuenta para poder hacer los cambios que deseemos, esta copia mantendrá un vínculo al repositorio original y podríamos solicitar un pull-request a su propietario para que acepte o no los cambios que hemos hecho, es así como se trabaja en proyectos colaborativos.
+
+Eliminar Repositorios y ramas
+
+Un repositorio se puede aliminar en Github desde la sección settings, para eliminar una rama debemos visualizar todas las ramas y clicar en el icono del cubo de basura, esta acción se puede revertir solamente si no hemos pasado a la pestaña de código.
+
+Aunque hayamos eliminado una rama en el repositorio remoto y hecho git pull para actualizar el repositorio local, la rama eliminada seguirá apareciendo en local, para eliminarla hacemos:
+
+- git branch -D [nombre_de_la_rama]
+
+GIT STASH
+
+Este comando permite llevar los cambios que hemos hecho por error en una rama hacia la rama donde queríamos realmente hacer esos cambios, este comando funciona si no hemos hecho "git add" de los cambios.
+
+- git stash (recoge los cambios que se han hecho en la rama equivocada y los guarda en un stash, un lugar donde no tienen efecto)
+
+- git stash pop (ubicados en la rama correcta trae los cambios gurdados en el stash)
