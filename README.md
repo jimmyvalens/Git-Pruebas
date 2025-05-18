@@ -125,6 +125,36 @@ git push -u origin nueva-funcionalidad
 
 ---
 
+## 🔁 Pull Request vs Issue
+
+### ✅ Issue
+
+* Para reportar bugs, sugerir mejoras, hacer preguntas.
+
+* No afecta el código directamente.
+
+### 🔄 Pull Request (PR)
+
+* Solicitud para fusionar una rama con otra.
+
+* Incluye revisión de código.
+
+* Puede vincularse a una Issue.
+
+### Flujo típico:
+
+1. Crear una Issue → "Agregar validación"
+
+2. Crear una rama → git switch -c validar-formulario
+
+3. Hacer cambios, commit y push
+
+4. Crear un Pull Request
+
+5. Vincular PR con la Issue
+
+---
+
 ## ⚔️ Conflictos y Resolución
 
 Cuando hay conflictos:
