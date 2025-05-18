@@ -1,129 +1,249 @@
-` Configuración de usuario `
+# Guía de Git y GitHub – Prácticas esenciales
 
-- git config --global user.name "nombre apellido"
-- git config --global user.email "correo@correo.com"
+Este documento reúce las prácticas más comunes y modernas para trabajar con **Git y GitHub**, incluyendo configuraciones, comandos actualizados y flujos de trabajo profesionales. Ideal para comenzar a trabajar con control de versiones en proyectos colaborativos o personales.
 
+---
 
-- git init
+## 🔧 Configuración Inicial
 
-    Crea un repositorio local de Git.
+```bash
+git config --global user.name "Tu Nombre"
+git config --global user.email "correo@ejemplo.com"
+```
 
-- git add [nombre_archivo]
+## 🔍 Comandos básicos de Git
 
-    Guarda los cambios hechos en el archivo indicado en el repositorio.
+| Acción                         | Comando Moderno                    | Descripción                             |
+| ------------------------------ | ---------------------------------- | --------------------------------------- |
+| Inicializar repositorio        | `git init`                         | Crea un repositorio local.              |
+| Ver estado del repo            | `git status`                       | Muestra el estado de los archivos.      |
+| Agregar archivos al staging    | `git add archivo.txt`              | Prepara el archivo para commit.         |
+| Agregar todos los archivos     | `git add .`                        | Prepara todos los archivos para commit. |
+| Crear un commit                | `git commit -m "mensaje"`          | Guarda los cambios localmente.          |
+| Ver historial de commits       | `git log`                          | Historial detallado de commits.         |
+| Ver historial resumido         | `git log --oneline`                | Historial en una sola línea.            |
+| Deshacer staging de un archivo | `git restore --staged archivo.txt` | Saca un archivo del staging.            |
+| Revertir cambios en archivo    | `git restore archivo.txt`          | Revierte el archivo al último commit.   |
 
-- git add .
+---
 
-    Guarda los cambios hechos en todos los archivos del proyecto.
+## 📂 Conexión con GitHub
 
-- git commit -m "mensaje descriptivo"
+### Crear y subir repositorio:
 
-    Crea un punto de control en el repositorio local.
+1. Crear repositorio en GitHub
+2. Enlazar el repositorio local:
 
-- git log
+```bash
+git remote add origin https://github.com/usuario/repositorio.git
+```
 
-    Muestra el historial de commits.
+3. Subir por primera vez:
 
-- git status
+```bash
+git push -u origin main
+```
 
-    Muestra el estado en el que se encuentran los ficheros del proyecto.
+### Subir cambios:
 
-- git restore --staged [nombre_archivo]
+```bash
+git add .
+git commit -m "mensaje descriptivo"
+git push
+```
 
-    Saca un archivo del "stagin area" que se ha incluido previamente con "git add".
+### Clonar un repositorio:
 
-- git restore [nombre_archivo]
+```bash
+git clone https://github.com/usuario/repositorio.git
+```
 
-    Deshace los últimos cambios hechos en el archivo que se encuentra en el stagin area.
-    
-GITHUB
+---
 
-Para subir el repositorio local a Github: 
+## 🌐 Autenticación por SSH
 
-- Creamos el repositorio en Github
-- Conectamos nuestro repositorio local con el repositorio creado en Github
+1. Generar llave SSH (si no existe):
 
-    git remote add origin [url_del_repositorio_creado_en_Github]
+```bash
+ssh-keygen -t ed25519 -C "tu_email@example.com"
+```
 
-- Subimos el repositorio local al repositorio de GitHub
+2. Agregar la clave pública a tu cuenta de GitHub:
 
-    git push -u origin main
+   * Copia la clave con `cat ~/.ssh/id_ed25519.pub`
+   * Ve a GitHub > Settings > SSH and GPG Keys
 
-- Subir cambios a Github
+3. Usa la URL SSH en lugar de HTTPS:
 
-    git add .
-    git commit -m "mensaje"
-    git push
+```bash
+git remote set-url origin git@github.com:usuario/repositorio.git
+```
 
-- Clonar repositorio de Github
+---
 
-    Vamos a Github copiamos la url del repositorio a clonar
-    Volvemos a nuestro sitema de archivos y nos ubicamos en la carpeta donde queremos clonar el repositorio
-    git clone [url_del_repositorio_de_Github_a_clonar] 
+## 🔶 Ramas (branches)
 
-- Actualizar repositorio local con los cambios que se hayan hecho en el repositorio de Github, este paso será siempre el primero antes de trabajar en un repositorio de un equipo de trabajo
+| Acción                     | Comando moderno                 | Descripción                       |
+| -------------------------- | ------------------------------- | --------------------------------- |
+| Crear y cambiar de rama    | `git switch -c nueva-rama`      | Crea y cambia a la nueva rama.    |
+| Ver ramas disponibles      | `git branch`                    | Lista todas las ramas locales.    |
+| Cambiar de rama            | `git switch nombre-rama`        | Cambia a la rama indicada.        |
+| Subir rama por primera vez | `git push -u origin nueva-rama` | Sube y vincula la rama al remoto. |
+| Fusionar ramas             | `git merge nombre-rama`         | Trae los cambios de otra rama.    |
 
-    git pull
+---
 
-- Branches (ramas)
-  Una rama la podemos ver como una copia del directorio principal, en la cual podemos realizar cambios sin modificar el contenido del directorio principal (rama main), esto se hace para añadir nuevas funcionalidades al código, teniendo así una nueva versión sin sobreescribir la original. A su vez cada rama puede dar lugar a la creación de nuevas ramas
+## 🚀 Flujo de trabajo (Workflow)
 
-    - Crear y moverse a una nueva rama
+1. Crea una rama:
 
-        git checkout -b(de branch) [nombre_de_la_nueva_rama] ó git switch -c(de change) [nombre_de_la_nueva_rama] (más moderno)
+```bash
+git switch -c nueva-funcionalidad
+```
 
-    - Ver todas las ramas y la rama en la que nos encontramos
+2. Haz cambios y commits en esa rama.
+3. Sube tu rama:
 
-        git branch
+```bash
+git push -u origin nueva-funcionalidad
+```
 
-    - Moverse entre las ramas
+4. Abre un Pull Request en GitHub.
+5. El equipo revisa y aprueba la fusión.
+6. La rama se fusiona en `main` (o la rama correspondiente).
 
-        git checkout [nombre_de_la_rama] ó git switch [nombre_de_la_rama]
+---
 
-    - Volcar, fusionar o mergear el contenido de una rama con otra
+## 🔎 Git Pull vs Git Fetch
 
-        - Nos ubicamos en la rama a donde queremos traer los cambios
-        - git merge [nombre_de_la_rama] (de donde traeremos los cambios)
+| Comando     | Descripción                                    |
+| ----------- | ---------------------------------------------- |
+| `git fetch` | Descarga cambios remotos sin aplicarlos.       |
+| `git pull`  | Descarga y aplica (merge) los cambios remotos. |
 
-- PULL REQUEST
+> Recomendado: usar `fetch` seguido de `merge` para tener control total.
 
-Cuando trabajamos en equipo y nos han encomendado desarrollar alguna parte del código, es necesario que el equipo revise lo que hemos hecho antes de fusionarlo con el código de la rama main del proyecto o a la rama donde debe agregarse este código, para esto sirven las PULL REQUEST:
+---
 
-- En el repositorio que hemos clonado creamos una nueva rama para trabajar.
-- Realizamos nuestro trabajo en esa rama como lo hemos venido haciendo hasta ahora
-- Subimos los cambios al repositorio de Github en su propia rama (si no existe la creamos)
-- Dentro de la interfaz de Github haremos un "pull-request" para que nuestro equipo de trabajo revise nuestro código y lo mergee a la rama correspondiente, al crear el pull-request se mostrará todos los commits que hemos realizado en los ficheros y el equipo de trabajo lo mergeará si es necesario.
+## ⚔️ Conflictos y Resolución
 
-- CONFLICTOS
+Cuando hay conflictos:
 
-Los conflictos se pueden dar por varias razones entre ellas cuando los desarrolladores de un equipo han hecho o pretenden subir cambios al repositorio de Git sobre un mismo código sin tener actualizado el repositorio local. Github no sabe con cual versión quedarse y esto se debe solucionar revisando manualmente cada conflicto y eligiendo cual es la versión que vamos a mentener. Github mostrará un aviso de que existen conflictos cuando hagamos un pull-request o merge.
+1. Haz `git pull origin main` en tu rama de trabajo.
+2. Git avisará de los archivos en conflicto.
+3. Edita los archivos para resolver manualmente.
+4. Una vez resuelto:
 
-Los conflictos se pueden resolver desde la interfaz de Github o desde nuestro editor sobre nuestro repositorio local:
+```bash
+git add archivo-resuelto.txt
+git commit
+```
 
-- Nos posicionamos en la rama donde estamos trabajando
-- git pull origin main (esto traerá de Github todos los cambios hechos en la rama main, incluso los conflictos)
+---
 
-GIT PULL VS. GIT FETCH
+## 🔠 Git Stash
 
-- git pull trae los cambios del repositorio remoto y automáticamente actualiza nuestro repositorio local.
-- git fetch descarga los cambios del repositorio remoto sin sobreescribir el repositorio local, esto permite que podamos revisar los cambios que otro desarrollador haya hecho en el repositorio y decidir si queremos aplicarlos al nuestro con merge
+Guarda cambios temporales:
 
-FORK
+```bash
+git stash
+```
 
-Hacer un fork es hacer una copia exacta de un repositorio de Github a nuestra cuenta para poder hacer los cambios que deseemos, esta copia mantendrá un vínculo al repositorio original y podríamos solicitar un pull-request a su propietario para que acepte o no los cambios que hemos hecho, es así como se trabaja en proyectos colaborativos.
+Recupera los cambios:
 
-Eliminar Repositorios y ramas
+```bash
+git stash pop
+```
 
-Un repositorio se puede aliminar en Github desde la sección settings, para eliminar una rama debemos visualizar todas las ramas y clicar en el icono del cubo de basura, esta acción se puede revertir solamente si no hemos pasado a la pestaña de código.
+---
 
-Aunque hayamos eliminado una rama en el repositorio remoto y hecho git pull para actualizar el repositorio local, la rama eliminada seguirá apareciendo en local, para eliminarla hacemos:
+## 💡 Git Rebase vs Merge
 
-- git branch -D [nombre_de_la_rama]
+| Comando      | Descripción                                                      |
+| ------------ | ---------------------------------------------------------------- |
+| `git merge`  | Junta ramas manteniendo el historial original.                   |
+| `git rebase` | Aplica los commits de una rama sobre otra. Historial más limpio. |
 
-GIT STASH
+---
 
-Este comando permite llevar los cambios que hemos hecho por error en una rama hacia la rama donde queríamos realmente hacer esos cambios, este comando funciona si no hemos hecho "git add" de los cambios.
+## ⏪ Revertir cambios
 
-- git stash (recoge los cambios que se han hecho en la rama equivocada y los guarda en un stash, un lugar donde no tienen efecto)
+| Acción                      | Comando                                 |
+| --------------------------- | --------------------------------------- |
+| Volver a un commit anterior | `git revert [commit]`                   |
+| Revertir varios commits     | `git revert --no-commit [commit]..HEAD` |
 
-- git stash pop (ubicados en la rama correcta trae los cambios gurdados en el stash)
+---
+
+## 🔄 Clonar todas las ramas
+
+Por defecto solo se clona la rama principal. Para traer todas:
+
+```bash
+for branch in $(git branch -r | grep -v '\->'); do
+    git branch --track "${branch#origin/}" "$branch"
+done
+git fetch --all
+git pull --all
+```
+
+---
+
+## 📁 Actualizar archivo en todas las ramas
+
+```bash
+git checkout master
+git pull origin master
+
+for branch in $(git branch --format='%(refname:short)' | grep -v 'master'); do
+  git checkout $branch
+  git checkout master -- README.md
+  git add README.md
+  git commit -m "Update README.md from master"
+  git push origin $branch
+done
+
+git checkout master
+```
+
+---
+
+## 🔧 Eliminar ramas y repositorios
+
+* Borrar rama local:
+
+```bash
+git branch -D nombre-rama
+```
+
+* Borrar rama remota:
+
+```bash
+git push origin --delete nombre-rama
+```
+
+* Borrar repositorio: desde **Settings > Danger Zone** en GitHub.
+
+---
+
+## 🚪 Fork
+
+Un *fork* es una copia de un repositorio ajeno a tu cuenta. Permite:
+
+* Probar cambios libremente.
+* Hacer Pull Requests al repositorio original para sugerir cambios.
+
+---
+
+## 📊 Recomendación final
+
+Para flujos de trabajo modernos, se recomienda:
+
+* Usar `git switch` en vez de `checkout`
+* Usar `fetch` antes de `pull` si trabajas en equipo
+* Configurar acceso por SSH para evitar problemas con contraseñas
+* Documentar cada commit con mensajes claros
+
+---
+
+🌟 Este documento está en constante mejora. Puedes contribuir a su actualización con una Pull Request o Issue.
